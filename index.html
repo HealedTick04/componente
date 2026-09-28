@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selector de Fecha y Hora</title>
+  <link rel="stylesheet" href="css/componente.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      max-width: 900px;
+      width: 100%;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 6px;
+      color: #1e1b4b;
+    }
+    .subtitle {
+      color: #64748b;
+      font-size: 1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #ffffff;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    }
+    .card h2 {
+      font-size: 1.15rem;
+      margin-top: 0;
+      color: #1e293b;
+    }
+    .card p {
+      font-size: 0.88rem;
+      color: #64748b;
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      color: #334155;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      box-sizing: border-box;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      background-color: #ffffff;
+      cursor: pointer;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 9999px;
+      background-color: #e0e7ff;
+      color: #4338ca;
+      margin-bottom: 10px;
+    }
+    .output {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: #059669;
+      font-family: monospace;
+      min-height: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge">Inspirado en Raven</span>
+      <h1>Selector de Fecha y Hora</h1>
+      <p class="subtitle">Componente visual con selector de Año/Mes rápido, Reloj Analógico y Selección de Rango de Fechas.</p>
+    </header>
+
+    <div class="grid">
+      <!-- 1. Modo Rango de Fechas -->
+      <div class="card">
+        <h2>1. Rango de Fechas</h2>
+        <p>Selecciona dos puntos dentro del calendario con resaltado visual del período.</p>
+        <label for="picker-range">Período de reserva:</label>
+        <input type="text" id="picker-range" placeholder="Fecha inicio a Fecha fin" readonly>
+        <div class="output" id="output-range"></div>
+      </div>
+
+      <!-- 2. Reloj Analógico + Selector de Mes/Año -->
+      <div class="card">
+        <h2>2. Fecha y Reloj Analógico</h2>
+        <p>Incluye cuadrante circular con manecilla interactiva para hora y minutos.</p>
+        <label for="picker-clock">Cita médica:</label>
+        <input type="text" id="picker-clock" placeholder="Seleccionar fecha y hora..." readonly>
+        <div class="output" id="output-clock"></div>
+      </div>
+
+      <!-- 3. Tema Oscuro y Selector de Año Rápido -->
+      <div class="card">
+        <h2>3. Solo Fecha (Dark Mode)</h2>
+        <p>Haz clic en el título para saltar a cualquier mes o década de años.</p>
+        <label for="picker-dark">Año de nacimiento:</label>
+        <input type="text" id="picker-dark" placeholder="YYYY-MM-DD" readonly>
+        <div class="output" id="output-dark"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/componente.js"></script>
+  <script>
+    // 1. Instancia Rango de Fechas
+    new SwingDateTimePicker('#picker-range', {
+      range: true,
+      theme: 'light',
+      onSelect: (data, text) => {
+        document.getElementById('output-range').textContent = `Rango: ${text}`;
+      }
+    });
+
+    // 2. Instancia con Reloj Analógico
+    new SwingDateTimePicker('#picker-clock', {
+      enableTime: true,
+      theme: 'light',
+      onSelect: (date, text) => {
+        document.getElementById('output-clock').textContent = `Cita: ${text}`;
+      }
+    });
+
+    // 3. Instancia Tema Dark con navegación rápida de años
+    new SwingDateTimePicker('#picker-dark', {
+      enableTime: false,
+      theme: 'dark',
+      onSelect: (date, text) => {
+        document.getElementById('output-dark').textContent = `Elegido: ${text}`;
+      }
+    });
+  </script>
+</body>
+</html>
