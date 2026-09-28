@@ -2,6 +2,10 @@
 
 Libreria de JavaScript inspirada en componente **`swing-datetime-picker` de Raven**. Desarrollada en **JavaScript Vanilla**, adaptada a y modificada para una version de JavaScript sin Frameworks.
 
+## 🚀 Demo en Vivo
+
+https://healedtick04.github.io/componente/
+
 ## 🌟 Características Avanzadas Implementadas
 
 1. **Navegación Rápida de Meses y Décadas (Años)**:
@@ -15,3 +19,23 @@ Libreria de JavaScript inspirada en componente **`swing-datetime-picker` de Rave
 5. **Temas Claro y Oscuro**:
    - Soporte nativo para modo claro y oscuro (`light` / `dark`).
 
+## 💻 Ejemplos de Uso
+
+![Prueba de uso de las tres formas](img/Screenshot%202026-09-27%20191409.png)
+
+![Selección de dos fechas](img/Screenshot%202026-09-27%20191512.png)
+
+![Selección de una fecha](img/Screenshot%202026-09-27%20191530.png)
+
+![Selección de una hora](img/Screenshot%202026-09-27%20191545.png)
+
+![Modo oscuro del formato original](img/Screenshot%202026-09-27%20191559.png)
+
+### Modo Rango de Fechas
+```javascript
+const rangePicker = new SwingDateTimePicker('#mi-rango', {
+  range: true,
+  onSelect: (fechas, texto) => {
+    console.log('Inicio:', fechas.start, 'Fin:', fechas.end);
+  }
+});
